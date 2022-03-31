@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pepflix.R
+import com.example.pepflix.databinding.ItemContainerTvShowBinding
 import com.example.pepflix.listeners.TVShowListener
 import com.example.pepflix.models.TVShow
 import com.example.pepflix.utilities.BindingAdapters
