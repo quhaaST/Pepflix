@@ -1,5 +1,6 @@
 package com.example.pepflix.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -9,10 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pepflix.adapters.TVShowAdapter
 import com.example.pepflix.databinding.ActivityMainBinding
+import com.example.pepflix.listeners.TVShowListener
 import com.example.pepflix.models.TVShow
 import com.example.pepflix.viewmodels.MostPopularTVShowsViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TVShowListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MostPopularTVShowsViewModel
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     private fun doInitialization() {
         binding.rvTvShows.setHasFixedSize(true)
         viewModel = ViewModelProvider(this)[MostPopularTVShowsViewModel::class.java]
-        tvShowAdapter = TVShowAdapter(tvShows)
+        tvShowAdapter = TVShowAdapter(tvShows, this)
 
         binding.rvTvShows.adapter = tvShowAdapter
         binding.rvTvShows.layoutManager = LinearLayoutManager(this)
@@ -64,7 +66,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun toggleLoading() {
-        if (currentPage == 0) {
+        if (currentPage == 1) {
             if (binding.pbTvShows.visibility == View.GONE) {
                 binding.pbTvShows.visibility = View.VISIBLE
             } else {
@@ -77,6 +79,13 @@ class MainActivity : AppCompatActivity() {
                 binding.pbTvShowsMore.visibility = View.GONE
             }
         }
+    }
+
+    override fun onTVShowClicked(tvShow: TVShow) {
+        val intent = Intent(applicationContext, TVShowDetailsActivity::class.java)
+        intent.putExtra("tvShow", tvShow)
+
+        startActivity(intent)
     }
 
 }

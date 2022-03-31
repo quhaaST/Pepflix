@@ -7,10 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pepflix.R
+import com.example.pepflix.listeners.TVShowListener
 import com.example.pepflix.models.TVShow
 import com.example.pepflix.utilities.BindingAdapters
 
-class TVShowAdapter(val tvShows: List<TVShow>) : RecyclerView.Adapter<TVShowAdapter.TVShowViewHolder>() {
+class TVShowAdapter(val tvShows: List<TVShow>, val tvShowListener: TVShowListener)
+    : RecyclerView.Adapter<TVShowAdapter.TVShowViewHolder>() {
+
     inner class TVShowViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindTVShow(tvShow: TVShow) {
             val imageView = itemView.findViewById<ImageView>(R.id.imageTvShow)
@@ -24,6 +27,10 @@ class TVShowAdapter(val tvShows: List<TVShow>) : RecyclerView.Adapter<TVShowAdap
             network.text = "${tvShow.network} (${tvShow.country})"
             started.text = tvShow.startDate
             status.text = tvShow.status
+
+            itemView.setOnClickListener {
+                tvShowListener.onTVShowClicked(tvShow)
+            }
         }
     }
 
