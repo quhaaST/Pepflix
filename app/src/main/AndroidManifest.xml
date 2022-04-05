@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pepflix">
         <activity
+            android:name=".ui.WatchlistActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.TVShowDetailsActivity"
             android:exported="false" />
         <activity

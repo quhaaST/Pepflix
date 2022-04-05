@@ -1,9 +1,13 @@
 package com.example.pepflix.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
+@Entity(tableName = "tv_shows")
 data class TVShow(
+    @PrimaryKey
     @SerializedName("id")
     val id: Int,
 

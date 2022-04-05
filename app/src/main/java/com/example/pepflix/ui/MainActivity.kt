@@ -50,6 +50,11 @@ class MainActivity : AppCompatActivity(), TVShowListener {
             }
         })
         getMostPopularTVShows()
+
+        binding.imageWatchList.setOnClickListener {
+            val intent = Intent(applicationContext, WatchlistActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun getMostPopularTVShows() {
