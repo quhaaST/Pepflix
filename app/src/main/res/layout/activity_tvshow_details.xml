@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.TVShowDetailsActivity"
     android:animateLayoutChanges="true"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:id="@+id/clTvShowDetails">
 
     <ScrollView
         android:layout_width="match_parent"
